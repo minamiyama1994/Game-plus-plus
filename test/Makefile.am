@@ -1,4 +1,5 @@
-bin_PROGRAMS = test
+noinst_bin_PROGRAMS = test
+noinst_bindir = .
 test_SOURCES = test.cpp
-test_CXXFLAGS = ` @FLTK_CONFIG@ --cxxflags `
-test_LDFLAGS = ` @FLTK_CONFIG@ --ldflags `
+test_CXXFLAGS = ` @FLTK_CONFIG@ --cxxflags ` -I ../include
+test_LDFLAGS = ` @FLTK_CONFIG@ --ldflags ` -L ../src -l gpp
