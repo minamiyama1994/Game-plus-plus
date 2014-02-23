@@ -106,7 +106,6 @@ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
 AR = @AR@
-AS = @AS@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -132,7 +131,7 @@ ECHO_T = @ECHO_T@
 EGREP = @EGREP@
 EXEEXT = @EXEEXT@
 FGREP = @FGREP@
-FLTK_CONFIG = @FLTK_CONFIG@
+FOX_CONFIG = @FOX_CONFIG@
 GREP = @GREP@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
@@ -225,8 +224,8 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 lib_LTLIBRARIES = libgpp.la
 libgpp_la_SOURCES = GPP.cpp ../include/GPP/GPP.hpp
-libgpp_la_CXXFLAGS = ` @FLTK_CONFIG@ --use-images --cxxflags ` -I../include -I/local/include/boost-1_55
-libgpp_la_LDFLAGS = ` @FLTK_CONFIG@ --use-images --ldflags ` -lboost_thread-mgw48-mt-1_55 -lboost_system-mgw48-mt-1_55 -lboost_chrono-mgw48-mt-1_55
+libgpp_la_CXXFLAGS = ` @FOX_CONFIG@ --cflags ` -std=gnu++11 -I../include -I/local/include/boost-1_55
+libgpp_la_LDFLAGS = ` @FOX_CONFIG@ --libs ` -lboost_thread-mgw48-mt-1_55 -lboost_system-mgw48-mt-1_55 -lboost_chrono-mgw48-mt-1_55
 all: all-am
 
 .SUFFIXES:
