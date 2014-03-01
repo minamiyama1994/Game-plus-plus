@@ -69,15 +69,6 @@ CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
-	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
-	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-CCLD = $(CC)
-LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
-	$(LDFLAGS) -o $@
 SOURCES = $(test_SOURCES)
 DIST_SOURCES = $(test_SOURCES)
 ETAGS = etags
@@ -86,6 +77,7 @@ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
 AR = @AR@
+AS = @AS@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -203,8 +195,8 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 noinst_bindir = .
-test_SOURCES = test.cpp ../include/GPP/GPP.hpp
-test_CXXFLAGS = ` @FOX_CONFIG@ --cflags ` -std=gnu++11 -I../include -I/local/include/boost-1_55
+test_SOURCES = test.cpp
+test_CXXFLAGS = ` @FOX_CONFIG@ --cflags ` -std=gnu++11 -I../include -I/local/include/boost-1_55 -I../../FTMP/include -I../../Sprout
 test_LDFLAGS = ` @FOX_CONFIG@ --libs ` -L../src -lgpp -lboost_thread-mgw48-mt-1_55 -lboost_system-mgw48-mt-1_55 -lboost_chrono-mgw48-mt-1_55
 all: all-am
 

@@ -71,7 +71,7 @@ am__base_list = \
 am__installdirs = "$(DESTDIR)$(libdir)"
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libgpp_la_LIBADD =
-am_libgpp_la_OBJECTS = libgpp_la-GPP.lo
+am_libgpp_la_OBJECTS = libgpp_la-GPP.lo libgpp_la-GPP_impl.lo
 libgpp_la_OBJECTS = $(am_libgpp_la_OBJECTS)
 libgpp_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(libgpp_la_CXXFLAGS) \
@@ -89,15 +89,6 @@ CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
-	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
-	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-CCLD = $(CC)
-LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
-	$(LDFLAGS) -o $@
 SOURCES = $(libgpp_la_SOURCES)
 DIST_SOURCES = $(libgpp_la_SOURCES)
 ETAGS = etags
@@ -106,6 +97,7 @@ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 AMTAR = @AMTAR@
 AR = @AR@
+AS = @AS@
 AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
@@ -223,8 +215,8 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 lib_LTLIBRARIES = libgpp.la
-libgpp_la_SOURCES = GPP.cpp ../include/GPP/GPP.hpp
-libgpp_la_CXXFLAGS = ` @FOX_CONFIG@ --cflags ` -std=gnu++11 -I../include -I/local/include/boost-1_55
+libgpp_la_SOURCES = GPP.cpp GPP_impl.cpp
+libgpp_la_CXXFLAGS = ` @FOX_CONFIG@ --cflags ` -std=gnu++11 -I../include -I/local/include/boost-1_55 -I../../FTMP/include -I../../Sprout
 libgpp_la_LDFLAGS = ` @FOX_CONFIG@ --libs ` -lboost_thread-mgw48-mt-1_55 -lboost_system-mgw48-mt-1_55 -lboost_chrono-mgw48-mt-1_55
 all: all-am
 
@@ -301,6 +293,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgpp_la-GPP.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libgpp_la-GPP_impl.Plo@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -329,6 +322,13 @@ libgpp_la-GPP.lo: GPP.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='GPP.cpp' object='libgpp_la-GPP.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgpp_la_CXXFLAGS) $(CXXFLAGS) -c -o libgpp_la-GPP.lo `test -f 'GPP.cpp' || echo '$(srcdir)/'`GPP.cpp
+
+libgpp_la-GPP_impl.lo: GPP_impl.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgpp_la_CXXFLAGS) $(CXXFLAGS) -MT libgpp_la-GPP_impl.lo -MD -MP -MF $(DEPDIR)/libgpp_la-GPP_impl.Tpo -c -o libgpp_la-GPP_impl.lo `test -f 'GPP_impl.cpp' || echo '$(srcdir)/'`GPP_impl.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libgpp_la-GPP_impl.Tpo $(DEPDIR)/libgpp_la-GPP_impl.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='GPP_impl.cpp' object='libgpp_la-GPP_impl.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libgpp_la_CXXFLAGS) $(CXXFLAGS) -c -o libgpp_la-GPP_impl.lo `test -f 'GPP_impl.cpp' || echo '$(srcdir)/'`GPP_impl.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
