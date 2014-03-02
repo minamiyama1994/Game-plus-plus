@@ -16,6 +16,9 @@ class MainWindow : public FXMainWindow {
 
   protected:
     MainWindow() {}
+    int w_;
+    int h_;
+    FXPacker *label_packer;
     FXLabel *text_label;
 };
 #endif

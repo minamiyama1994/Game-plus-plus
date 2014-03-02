@@ -74,7 +74,7 @@ template <typename D> class command_base {
     auto operator()(game &g) -> game &{ return static_cast<D &>(*this)(g); }
 };
 template <typename T, typename U>
-constexpr auto operator+(const T &t, const U &u) -> decltype(t.add(u)) {
+auto operator+(const T &t, const U &u) -> decltype(t.add(u)) {
     return t.add(u);
 }
 class text : public command_base<text> {
@@ -156,7 +156,7 @@ class game {
     auto size(unsigned short w, unsigned short h) -> game &;
     template <typename commannd_type>
     auto operator()(const commannd_type &cmd) -> game &{
-        (cmd + pause{} + clear { })(*this);
+        (cmd + pause {} + clear{})(*this);
     }
     auto operator()() -> int { return 0; }
 };
