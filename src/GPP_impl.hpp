@@ -18,7 +18,10 @@ class MainWindow : public FXMainWindow {
     MainWindow() {}
     int w_;
     int h_;
-    FXPacker *label_packer;
-    FXLabel *text_label;
+    FXPacker *image_packer_;
+    FXIcon *image_icon_;
+    FXLabel *image_label_;
+    FXPacker *label_packer_;
+    FXLabel *text_label_;
 };
 #endif
