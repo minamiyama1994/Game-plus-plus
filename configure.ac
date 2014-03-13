@@ -12,7 +12,6 @@ AC_CONFIG_MACRO_DIR([m4])
 AC_PROG_CXX
 AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
-AC_CHECK_PROGS([FOX_CONFIG],[fox-config])
 
 # Checks for libraries.
 
